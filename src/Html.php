@@ -44,4 +44,5 @@ class Html extends \PHPUnit_Framework_TestCase
 
 		return $tag;
 	}
+	
 }
