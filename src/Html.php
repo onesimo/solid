@@ -9,18 +9,18 @@ class Html extends \PHPUnit_Framework_TestCase
 		return '<img src="' . $src . '">';
 	}
 
-	public function a($href, $anchor)
+	public function a(string $href, string $anchor)
 	{
 
-		$tag = $this->attributes();
+		$tag = $this->attributes('<a href="%s" %s> %s</a>');
 
-		$tag->href = $href;
-		$tag->anchor = $anchor;
+		$tag->attr[0] = $href;
+		$tag->attr[1] = $anchor;
 
 		return $tag;
 	}
 
-	private function attributes()
+	private function attributes($mask)
 	{
 		$tag = new class {
 
@@ -38,12 +38,15 @@ class Html extends \PHPUnit_Framework_TestCase
 			}
 
 			public function __toString(){
-				return '<a href="'.$this->href.'"'.$this->attributes.'>'.$this->anchor.'</a>';	
+				return sprintf($mask, $this->attr[0], $this->attributes, $this->attr[1]);
 			}
 		}
+
+		$tag->href = $href;
+        $tag->anchor = $anchor;
 
 		return $tag;
 	}
 
-	
+
 }
