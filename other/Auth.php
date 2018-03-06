@@ -34,6 +34,6 @@ $auth1 = $auth1->authenticate('onesimo', '123');
 $auth2 = $auth2->authenticate('onesimo', '123');
 
 
-if($auth1){
+if($auth2){
 	echo 'logado';
 }
